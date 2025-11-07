@@ -33,3 +33,28 @@ function updateDateTime() {
 }
 setInterval(updateDateTime, 1000);
 
+//theme switcher script
+
+document.addEventListener("DOMContentLoaded", () => {
+  const themeButton = document.getElementById("theme-toggle");
+  const currentTheme = localStorage.getItem("theme");
+
+  
+  if (currentTheme === "dark") {
+    document.body.classList.add("dark-mode");
+  }
+
+  if (themeButton) {
+    themeButton.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+
+   
+      if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+      } else {
+        localStorage.setItem("theme", "light");
+      }
+    });
+  }
+});
+

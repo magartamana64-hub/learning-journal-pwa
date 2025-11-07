@@ -164,3 +164,25 @@ footer {
   background-color: #004f75;
   transform: translateY(0);
 }
+
+/* theme switcher css */
+
+.theme-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+
+.dark-mode {
+  background-color: #111;
+  color: #eee;
+}
+
+.dark-mode a {
+  color: #90caf9;
+}
+.dark-mode p, .dark-mode h1{
+  color:#ccc
+}
