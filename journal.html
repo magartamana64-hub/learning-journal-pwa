@@ -9,12 +9,26 @@
 </head>
 
 <body>
-     <header id="main-header"></header>
-     <div class="theme-container">
-      <button id="theme-toggle" class="btn">Toggle Theme</button>
+    <header id="main-header"></header>
+    <div class="theme-container">
+        <button id="theme-toggle" class="btn">Toggle Theme</button>
     </div>
 
     <main>
+        <section class="intro">
+            <h2>Add Journal Entry</h2>
+            <form id="entry-form">
+                <input type="text" id="entry-title" placeholder="Entry Title" required />
+                <textarea id="entry-content" placeholder="Write your thoughts..." required></textarea>
+
+                <div class="clear-container">
+                    <button type="submit" class="btn">Save Entry</button>
+                    <button id="clear-entries" class="btn btn-clear">Clear All Entries</button>
+                </div>
+            </form>
+            <div id="entry-list"></div>
+        </section>
+
         <section class="intro">
             <div class="cover-image">
                 <img src="images/journal.png" alt="Journal cover image" />
@@ -54,16 +68,38 @@
                     devices.</p>
             </article>
 
-             <article class="journal-entry">
+            <article class="journal-entry">
                 <h3>Week 3 : JAVASCRIPT & DOM MANIPULATION </h3>
                 <p><strong>Which DOM selection methods did you use, and why did you choose them?</strong><br>
-                    In this lab, I used several DOM selection functions, including getElementById, querySelector, and querySelectorAll. I used getElementById since the unique elements, namely the navigation header and the theme toggle button, required particular interaction. The ease of manipulating certain elements of my interface made it easy to use querySelector to target specific elements by using the CSS-style selectors. In the meantime, querySelectorAll() came in handy to extract several links in the navigation and underline the current page. A combination of these approaches offered the flexibility, ease, and accuracy when it comes to dynamically updating content and design on all the pages of my Learning Journal website.</p>
+                    In this lab, I used several DOM selection functions, including getElementById, querySelector, and
+                    querySelectorAll. I used getElementById since the unique elements, namely the navigation header and
+                    the theme toggle button, required particular interaction. The ease of manipulating certain elements
+                    of my interface made it easy to use querySelector to target specific elements by using the CSS-style
+                    selectors. In the meantime, querySelectorAll() came in handy to extract several links in the
+                    navigation and underline the current page. A combination of these approaches offered the
+                    flexibility, ease, and accuracy when it comes to dynamically updating content and design on all the
+                    pages of my Learning Journal website.</p>
 
                 <p><strong>What was the most challenging part about linking JavaScript with your HTML?</strong><br>
-                    The most difficult part of my JavaScript and HTML connection was getting my script to be loaded when it was the right time. My code had not initially worked, as it was executed before all elements in the HTML had loaded. My solution to this was the DOMContentLoaded event, which makes sure that JavaScript does not run until the DOM is ready. The other difficulty was the functionality at a multi-page level. As an illustration, my theme toggle had been functioning on one page, but it was reinstated when I used other pages. To solve this, I employed Local storage to store the preference of the theme that the user had. These problems helped me to understand how crucial the correct timing and continuous data are in the process of JavaScript development.</p>
+                    The most difficult part of my JavaScript and HTML connection was getting my script to be loaded when
+                    it was the right time. My code had not initially worked, as it was executed before all elements in
+                    the HTML had loaded. My solution to this was the DOMContentLoaded event, which makes sure that
+                    JavaScript does not run until the DOM is ready. The other difficulty was the functionality at a
+                    multi-page level. As an illustration, my theme toggle had been functioning on one page, but it was
+                    reinstated when I used other pages. To solve this, I employed Local storage to store the preference
+                    of the theme that the user had. These problems helped me to understand how crucial the correct
+                    timing and continuous data are in the process of JavaScript development.</p>
 
                 <p><strong>How did you test and debug your JavaScript code?</strong><br>
-                    Browser developer tools, in particular the Console of Google Chrome, proved to be quite helpful to test and debug my JavaScript code. To track the values of variables, ensure that the right element was selected, and ensure that event listeners were functioning, I relied on statements of console.log statements. Whenever there were mistakes, i.e. a null reference, I realised that my script was being executed prematurely or in search of elements that were not present. I had also been updating pages and changing between them to ensure that Local Storage retained the right theme. Regular testing helped me to understand how important real-time feedback, incremental debugging, and the application of developer tools are to make sure that everything works in my Learning Journal PWA.</p>
+                    Browser developer tools, in particular the Console of Google Chrome, proved to be quite helpful to
+                    test and debug my JavaScript code. To track the values of variables, ensure that the right element
+                    was selected, and ensure that event listeners were functioning, I relied on statements of
+                    console.log statements. Whenever there were mistakes, i.e. a null reference, I realised that my
+                    script was being executed prematurely or in search of elements that were not present. I had also
+                    been updating pages and changing between them to ensure that Local Storage retained the right theme.
+                    Regular testing helped me to understand how important real-time feedback, incremental debugging, and
+                    the application of developer tools are to make sure that everything works in my Learning Journal
+                    PWA.</p>
             </article>
         </section>
     </main>
@@ -72,6 +108,8 @@
         <p>&copy; 2025 Tamana Magar | School of Games and Creative Technology</p>
     </footer>
     <script src="js/script.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/browser.js"></script>
 </body>
 
 </html>
