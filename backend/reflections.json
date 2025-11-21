@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Week 1: Frontend Fundamentals (Temperature Converter PWA)",
+        "date": "2025-01-01",
+        "reflection": "I designed for mobile screens first with a simple layout and large buttons. Then I used media queries to adjust for bigger screens. Flexbox helped align inputs and results neatly, keeping the layout responsive and clean. Media queries were tricky at first, especially maintaining layout consistency across different screen sizes."
+    },
+    {
+        "title": "Week 2: Frontend Fundamentals",
+        "date": "2025-01-08",
+        "reflection": "I started designing for small screens first, ensuring content and layout were simple and functional. Flexbox was the most helpful tool for creating a clean and responsive navigation layout. I found media queries slightly tricky at first, especially balancing font sizes and spacing across devices."
+    },
+    {
+        "title": "Week 3: JavaScript & DOM Manipulation",
+        "date": "2025-01-15",
+        "reflection": "I used getElementById, querySelector, and querySelectorAll to target and manipulate elements. The biggest challenge was ensuring the script executed after the DOM was ready, which I solved with DOMContentLoaded. Debugging with Chrome DevTools helped track variable values and find issues such as null references. Local Storage was used to persist my theme toggle across all pages."
+    },
+    {
+        "title": "Test1",
+        "reflection": "Test1",
+        "date": "2025-11-21 19:11"
+    },
+    {
+        "title": "Lab 5 Reflection : Python & JSON",
+        "reflection": "This week, I learned how to save my journal entries using Python and store them in a JSON file. I also updated my PWA to load and display the entries from the JSON data. It helped me understand how backend storage works with a simple Python script.",
+        "date": "2025-11-21 19:12"
+    }
+]
