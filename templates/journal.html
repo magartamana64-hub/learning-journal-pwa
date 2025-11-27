@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Learning Journal | Weekly Entries</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/static/css/style.css" />
 </head>
 
 <body>
@@ -49,13 +49,13 @@
         <p>&copy; 2025 Tamana Magar | School of Games and Creative Technology</p>
     </footer>
 
-    <script src="js/script.js"></script>
-    <script src="js/storage.js"></script>
-    <script src="js/browser.js"></script>
+    <script src="/static/js/script.js"></script>
+    <script src="/static/js/storage.js"></script>
+    <script src="/static/js/browser.js"></script>
     <script>
         async function loadReflections() {
             try {
-                const response = await fetch("/reflections");
+                const response = await fetch("api/reflections");
                 const data = await response.json();
 
                 const list = document.getElementById("entry-list");
@@ -90,7 +90,7 @@
             const reflection = document.getElementById("entry-content").value;
 
             
-            const response = await fetch("/add_reflection", {
+            const response = await fetch("api/add_reflection", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ title, reflection })

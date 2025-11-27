@@ -23,5 +23,10 @@
         "title": "Lab 5 Reflection : Python & JSON",
         "reflection": "This week, I learned how to save my journal entries using Python and store them in a JSON file. I also updated my PWA to load and display the entries from the JSON data. It helped me understand how backend storage works with a simple Python script.",
         "date": "2025-11-21 19:12"
+    },
+    {
+        "title": "hii",
+        "reflection": "hello",
+        "date": "2025-11-27 20:43"
     }
 ]

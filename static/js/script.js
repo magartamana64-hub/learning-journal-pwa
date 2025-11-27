@@ -5,10 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
       <nav>
         <h1 class="logo">Learning Journal</h1>
         <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="journal.html">Journal</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="about.html">About</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/reflections">Journal</a></li>
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/about">About</a></li>
         </ul>
       </nav>
     `;
