@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning Journal | Weekly Entries</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <header id="main-header"></header>
+
+    <div class="theme-container">
+        <button id="theme-toggle" class="btn">Toggle Theme</button>
+    </div>
+
+    <p id="reflection-count"></p>
+
+    <main>
+        <section class="intro">
+            <h2>Add Journal Entry</h2>
+
+            <form id="entry-form">
+                <input type="text" id="entry-title" placeholder="Entry Title" required />
+                <textarea id="entry-content" placeholder="Write your thoughts..." required></textarea>
+
+                <div class="clear-container">
+                    <button type="submit" class="btn">Save Entry</button>
+                    <button id="clear-entries" class="btn btn-clear">Clear All Entries</button>
+                </div>
+            </form>
+
+            <!-- Dynamic Entries Loaded Here -->
+            <div id="entry-list"></div>
+        </section>
+
+        <section class="intro">
+            <div class="cover-image">
+                <img src="images/journal.png" alt="Journal cover image" />
+            </div>
+
+            <h2>Weekly Learning Journal</h2>
+            <p>Each week, I reflect on my learning progress, challenges, and new skills gained in Mobile Application Development.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Tamana Magar | School of Games and Creative Technology</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/browser.js"></script>
+    <script>
+        async function loadReflections() {
+            try {
+                const response = await fetch("/reflections");
+                const data = await response.json();
+
+                const list = document.getElementById("entry-list");
+                list.innerHTML = "";
+
+                data.forEach(entry => {
+                    const card = document.createElement("article");
+                    card.classList.add("journal-entry");
+
+                    card.innerHTML = `
+                        <h3>${entry.title}</h3>
+                        <small>${entry.date}</small>
+                        <p>${entry.reflection}</p>
+                    `;
+
+                    list.appendChild(card);
+                });
+
+                document.getElementById("reflection-count").innerText =
+                    `Total Reflections: ${data.length}`;
+
+            } catch (err) {
+                console.error("Failed to load reflections:", err);
+            }
+        }
+
+       
+        document.getElementById("entry-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const title = document.getElementById("entry-title").value;
+            const reflection = document.getElementById("entry-content").value;
+
+            
+            const response = await fetch("/add_reflection", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ title, reflection })
+            });
+
+            if (response.ok) {
+                document.getElementById("entry-form").reset();
+                loadReflections(); // Refresh list
+            } else {
+                alert("Failed to save entry.");
+            }
+        });
+
+        // Load entries when page starts
+        loadReflections();
+    </script>
+</body>
+
+</html>
