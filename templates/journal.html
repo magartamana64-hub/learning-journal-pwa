@@ -31,7 +31,6 @@
                 </div>
             </form>
 
-            <!-- Dynamic Entries Loaded Here -->
             <div id="entry-list"></div>
         </section>
 
@@ -52,16 +51,17 @@
     <script src="/static/js/script.js"></script>
     <script src="/static/js/storage.js"></script>
     <script src="/static/js/browser.js"></script>
+
     <script>
         async function loadReflections() {
             try {
-                const response = await fetch("api/reflections");
+                const response = await fetch("/api/reflections");
                 const data = await response.json();
 
                 const list = document.getElementById("entry-list");
                 list.innerHTML = "";
 
-                data.forEach(entry => {
+                data.forEach((entry, index) => {
                     const card = document.createElement("article");
                     card.classList.add("journal-entry");
 
@@ -69,6 +69,7 @@
                         <h3>${entry.title}</h3>
                         <small>${entry.date}</small>
                         <p>${entry.reflection}</p>
+                        <button class="btn btn-clear delete-btn" data-id="${index}">Delete</button>
                     `;
 
                     list.appendChild(card);
@@ -82,15 +83,13 @@
             }
         }
 
-       
         document.getElementById("entry-form").addEventListener("submit", async (e) => {
             e.preventDefault();
 
             const title = document.getElementById("entry-title").value;
             const reflection = document.getElementById("entry-content").value;
 
-            
-            const response = await fetch("api/add_reflection", {
+            const response = await fetch("/api/add_reflection", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ title, reflection })
@@ -98,15 +97,31 @@
 
             if (response.ok) {
                 document.getElementById("entry-form").reset();
-                loadReflections(); // Refresh list
+                loadReflections();
             } else {
                 alert("Failed to save entry.");
             }
         });
 
-        // Load entries when page starts
+        document.addEventListener("click", async (e) => {
+            if (e.target.classList.contains("delete-btn")) {
+                const id = e.target.getAttribute("data-id");
+
+                const response = await fetch(`/api/delete/${id}`, {
+                    method: "DELETE"
+                });
+
+                if (response.ok) {
+                    loadReflections();
+                } else {
+                    alert("Failed to delete entry.");
+                }
+            }
+        });
+
         loadReflections();
     </script>
+
 </body>
 
 </html>

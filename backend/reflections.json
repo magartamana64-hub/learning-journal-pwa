@@ -15,18 +15,13 @@
         "reflection": "I used getElementById, querySelector, and querySelectorAll to target and manipulate elements. The biggest challenge was ensuring the script executed after the DOM was ready, which I solved with DOMContentLoaded. Debugging with Chrome DevTools helped track variable values and find issues such as null references. Local Storage was used to persist my theme toggle across all pages."
     },
     {
-        "title": "Test1",
-        "reflection": "Test1",
-        "date": "2025-11-21 19:11"
-    },
-    {
         "title": "Lab 5 Reflection : Python & JSON",
         "reflection": "This week, I learned how to save my journal entries using Python and store them in a JSON file. I also updated my PWA to load and display the entries from the JSON data. It helped me understand how backend storage works with a simple Python script.",
         "date": "2025-11-21 19:12"
     },
     {
-        "title": "hii",
-        "reflection": "hello",
-        "date": "2025-11-27 20:43"
+        "title": "TOPIC 6 FRONTEND & BACKEND",
+        "reflection": "The frontend\u2013backend connection is important because it allows the interface to communicate with the server so data can be submitted, stored, and displayed dynamically. In my Flask project, I used GET to load reflections, POST to add new ones, and DELETE to remove entries. Unlike reading JSON directly in the browser, Flask allows the server to read and write the JSON file securely, making the data persistent. While deploying on PythonAnywhere, I faced 404 errors and \u201cUnexpected token <\u201d issues, which I fixed by correcting the fetch URLs, ensuring proper file paths, and reloading the web app. As an extra feature, I added a delete function to let users remove unwanted reflections and better manage their journal.",
+        "date": "2025-11-27 20:48"
     }
 ]
