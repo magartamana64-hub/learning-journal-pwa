@@ -59,4 +59,19 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/sw.js")
+            .then(() => console.log("Service worker registered"))
+            .catch(err => console.log("SW registration failed:", err));
+    });
+}
+
+window.addEventListener("offline", () => {
+    document.getElementById("offline-banner").style.display = "block";
+});
+
+window.addEventListener("online", () => {
+    document.getElementById("offline-banner").style.display = "none";
+});
 

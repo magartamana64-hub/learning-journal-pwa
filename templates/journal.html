@@ -6,9 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Learning Journal | Weekly Entries</title>
     <link rel="stylesheet" href="/static/css/style.css" />
+     <link rel="manifest" href="/static/manifest.json">
 </head>
 
 <body>
+    <div id="offline-banner" style="
+    display:none;
+    background:#ff5555;
+    color:white;
+    padding:10px;
+    text-align:center;
+    font-weight:bold;
+">
+    You are offline — some features may be unavailable.
+</div>
+
     <header id="main-header"></header>
 
     <div class="theme-container">
@@ -52,43 +64,64 @@
     <script src="/static/js/storage.js"></script>
     <script src="/static/js/browser.js"></script>
 
-    <script>
-        async function loadReflections() {
-            try {
-                const response = await fetch("/api/reflections");
-                const data = await response.json();
+ <script>
+    // Helper function to display reflections 
+    function displayReflections(data) {
+        const list = document.getElementById("entry-list");
+        list.innerHTML = "";
 
-                const list = document.getElementById("entry-list");
-                list.innerHTML = "";
+        data.forEach((entry, index) => {
+            const card = document.createElement("article");
+            card.classList.add("journal-entry");
 
-                data.forEach((entry, index) => {
-                    const card = document.createElement("article");
-                    card.classList.add("journal-entry");
+            card.innerHTML = `
+                <h3>${entry.title}</h3>
+                <small>${entry.date}</small>
+                <p>${entry.reflection}</p>
+                <button class="btn btn-clear delete-btn" data-id="${index}">Delete</button>
+            `;
 
-                    card.innerHTML = `
-                        <h3>${entry.title}</h3>
-                        <small>${entry.date}</small>
-                        <p>${entry.reflection}</p>
-                        <button class="btn btn-clear delete-btn" data-id="${index}">Delete</button>
-                    `;
+            list.appendChild(card);
+        });
 
-                    list.appendChild(card);
-                });
+        document.getElementById("reflection-count").innerText =
+            `Total Reflections: ${data.length}`;
+    }
 
-                document.getElementById("reflection-count").innerText =
-                    `Total Reflections: ${data.length}`;
+    // Load reflections (now supports offline use)
+    async function loadReflections() {
+        try {
+            const response = await fetch("/api/reflections");
+            const data = await response.json();
 
-            } catch (err) {
-                console.error("Failed to load reflections:", err);
+            // Save dynamic data for offline mode
+            localStorage.setItem("cachedReflections", JSON.stringify(data));
+
+            displayReflections(data);
+
+        } catch (err) {
+            console.warn("Offline mode: Loading cached reflections...");
+
+            // Load offline reflections if available
+            const cached = localStorage.getItem("cachedReflections");
+
+            if (cached) {
+                displayReflections(JSON.parse(cached));
+            } else {
+                document.getElementById("entry-list").innerHTML =
+                    "<p>You are offline and no cached reflections are available.</p>";
             }
         }
+    }
 
-        document.getElementById("entry-form").addEventListener("submit", async (e) => {
-            e.preventDefault();
+    // Add new reflection
+    document.getElementById("entry-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-            const title = document.getElementById("entry-title").value;
-            const reflection = document.getElementById("entry-content").value;
+        const title = document.getElementById("entry-title").value;
+        const reflection = document.getElementById("entry-content").value;
 
+        try {
             const response = await fetch("/api/add_reflection", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -97,16 +130,21 @@
 
             if (response.ok) {
                 document.getElementById("entry-form").reset();
-                loadReflections();
+                loadReflections(); // reload new entries
             } else {
                 alert("Failed to save entry.");
             }
-        });
+        } catch (err) {
+            alert("You are offline. Cannot save new reflections.");
+        }
+    });
 
-        document.addEventListener("click", async (e) => {
-            if (e.target.classList.contains("delete-btn")) {
-                const id = e.target.getAttribute("data-id");
+    // Delete reflection
+    document.addEventListener("click", async (e) => {
+        if (e.target.classList.contains("delete-btn")) {
+            const id = e.target.getAttribute("data-id");
 
+            try {
                 const response = await fetch(`/api/delete/${id}`, {
                     method: "DELETE"
                 });
@@ -116,11 +154,15 @@
                 } else {
                     alert("Failed to delete entry.");
                 }
+            } catch (err) {
+                alert("You are offline. Cannot delete reflections.");
             }
-        });
+        }
+    });
 
-        loadReflections();
-    </script>
+    // Initial load
+    loadReflections();
+</script>
 
 </body>
 
