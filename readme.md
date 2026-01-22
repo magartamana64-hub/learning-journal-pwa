@@ -8,7 +8,6 @@ A **Progressive Web App (PWA)** to document weekly learning reflections, showcas
 - [Features](#features)
 - [Project Structure](#project-structure)
 - [Installation](#installation)
-- [Usage](#usage)
 - [API Endpoints](#api-endpoints)
 - [Offline Support](#offline-support)
 - [Technologies Used](#technologies-used)
@@ -39,29 +38,31 @@ A **Progressive Web App (PWA)** to document weekly learning reflections, showcas
 
 learning-journal-pwa/
 │
-├── app.py # Flask backend
+├── app.py                  # Flask backend
 ├── backend/
-│ └── reflections.json # Stored journal reflections
+│   └── reflections.json    # Stored journal reflections
 ├── templates/
-│ ├── index.html
-│ ├── about.html
-│ ├── projects.html
-│ ├── journal.html
-│ └── dashboard.html
+│   ├── index.html
+│   ├── about.html
+│   ├── projects.html
+│   ├── journal.html
+│   └── dashboard.html
 ├── static/
-│ ├── css/
-│ │ └── style.css
-│ ├── js/
-│ │ ├── script.js
-│ │ ├── storage.js
-│ │ ├── browser.js
-│ │ └── dashboard.js
-│ ├── images/
-│ │ ├── cover.png
-│ │ ├── journal.png
-│ │ └── project.jpg
-│ └── manifest.json
-└── sw.js 
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   ├── script.js
+│   │   ├── storage.js
+│   │   ├── browser.js
+│   │   └── dashboard.js
+│   ├── images/
+│   │   ├── cover.png
+│   │   ├── journal.png
+│   │   └── project.jpg
+│   └── manifest.json
+└── sw.js                   # Service worker for offline support
+
+
 ## Installation
 
 1. **Clone the repository**
@@ -101,3 +102,16 @@ http://127.0.0.1:5000/
 | `/api/add_reflection`     | POST   | Add a new reflection       |
 | `/api/delete/<int:index>` | DELETE | Delete reflection by index |
 
+#Offline Support
+-Service worker caches assets for offline usage.
+-Reflections are stored in localStorage for offline reading.
+-Offline banner shows when the app is disconnected.
+-New entries cannot be saved offline (alerts user).
+
+Technologies Used
+-Backend: Python, Flask
+-Frontend: HTML5, CSS3, JavaScript
+-PWA Features: Service Worker, Manifest, Offline Caching
+-Data Storage: JSON file (backend/reflections.json) + localStorage
+-Charts: Chart.js for dashboard
+-Other: Clipboard API, Notification API
