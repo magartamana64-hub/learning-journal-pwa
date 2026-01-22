@@ -102,16 +102,16 @@ http://127.0.0.1:5000/
 | `/api/add_reflection`     | POST   | Add a new reflection       |
 | `/api/delete/<int:index>` | DELETE | Delete reflection by index |
 
-#Offline Support
--Service worker caches assets for offline usage.
--Reflections are stored in localStorage for offline reading.
--Offline banner shows when the app is disconnected.
--New entries cannot be saved offline (alerts user).
+## Offline Support
+- Service worker caches assets for offline usage.
+- Reflections are stored in `localStorage` for offline reading.
+- Offline banner shows when the app is disconnected.
+- New entries cannot be saved offline (alerts the user).
 
-Technologies Used
--Backend: Python, Flask
--Frontend: HTML5, CSS3, JavaScript
--PWA Features: Service Worker, Manifest, Offline Caching
--Data Storage: JSON file (backend/reflections.json) + localStorage
--Charts: Chart.js for dashboard
--Other: Clipboard API, Notification API
+## Technologies Used
+- **Backend:** Python, Flask
+- **Frontend:** HTML5, CSS3, JavaScript
+- **PWA Features:** Service Worker, Manifest, Offline Caching
+- **Data Storage:** JSON file (`backend/reflections.json`) + `localStorage`
+- **Charts:** Chart.js for dashboard
+- **Other:** Clipboard API, Notification API
