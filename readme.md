@@ -35,32 +35,8 @@ A **Progressive Web App (PWA)** to document weekly learning reflections, showcas
 ---
 
 ## Project Structure
+![alt text](image.png)
 
-learning-journal-pwa/
-│
-├── app.py                  # Flask backend
-├── backend/
-│   └── reflections.json    # Stored journal reflections
-├── templates/
-│   ├── index.html
-│   ├── about.html
-│   ├── projects.html
-│   ├── journal.html
-│   └── dashboard.html
-├── static/
-│   ├── css/
-│   │   └── style.css
-│   ├── js/
-│   │   ├── script.js
-│   │   ├── storage.js
-│   │   ├── browser.js
-│   │   └── dashboard.js
-│   ├── images/
-│   │   ├── cover.png
-│   │   ├── journal.png
-│   │   └── project.jpg
-│   └── manifest.json
-└── sw.js                   # Service worker for offline support
 
 
 ## Installation
