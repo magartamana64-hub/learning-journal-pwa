@@ -11,8 +11,7 @@ A **Progressive Web App (PWA)** to document weekly learning reflections, showcas
 - [API Endpoints](#api-endpoints)
 - [Offline Support](#offline-support)
 - [Technologies Used](#technologies-used)
-- [Screenshots](#screenshots)
-- [License](#license)
+- [Live Link](#live-link)
 
 ---
 
@@ -91,3 +90,7 @@ http://127.0.0.1:5000/
 - **Data Storage:** JSON file (`backend/reflections.json`) + `localStorage`
 - **Charts:** Chart.js for dashboard
 - **Other:** Clipboard API, Notification API
+
+## Live Link
+PythonAnywhere: https://tamanamagar.pythonanywhere.com/
+
