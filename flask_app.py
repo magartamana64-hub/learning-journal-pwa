@@ -76,6 +76,10 @@ def api_delete_reflection(index):
         return jsonify({"message": "Deleted"}), 200
     return jsonify({"error": "Invalid index"}), 404
 
+@app.route("/dashboard")
+def dashboard():
+    return render_template("dashboard.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
